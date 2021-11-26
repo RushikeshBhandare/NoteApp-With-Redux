@@ -81,30 +81,35 @@ class ViewNote extends PureComponent {
                             </Text>
                         ) : ( 
                                 <FlatList
-                                    style={ styles.flatlist }
-                                    data={this.props.notes}
+                                    style={styles.flatlist}
+                                    data={this.props.notes.reverse()}
                                     // keyExtractor={ data.id}
                                     renderItem={({ item }) => {
-                                        console.log(item)
-
+                                        console.log("Notes from View NOte Flatlist ",this.props.notes)
                                         return (
                                             <SingleNote
                                                 id={item.id}
                                                 onPressDelete={this.deleteNote}
                                                 title={item.note.title}
                                                 description={item.note.description}
-                                                time={ item.time }
-                                                navigation={ this.props.navigation }
+                                                time={item.time}
+                                                navigation={this.props.navigation}
                                             />
                                         )
                                     }}
-                                    keyExtractor={ item => item.id}
+                                    // inverted
+                                    keyExtractor={item => item.id}
+                                    showsVerticalScrollIndicator={ false}
                                 />
                         )
                     }
                     
                     <View style={styles.buttonContainer}>
-                        <AppButton textStyle={{color: 'black', fontWeight: 'bold', fontSize: 16}} lable='New note' onPress={ this.onPressAddNote}/>
+                        <AppButton
+                            textStyle={{ color: 'black', fontWeight: 'bold', fontSize: 16 }}
+                            containerStyle={{backgroundColor: '#f5b042'}}
+                            lable='New note'
+                            onPress={this.onPressAddNote} />
                     </View>
                 </View>
             </View>

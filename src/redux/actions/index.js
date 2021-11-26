@@ -26,19 +26,12 @@ export const deleteNote = (id) => {
     }
 }
 
-export const updateNote = (note) => {
-    const payload = {
-        note
-    }
-    return {
-        type: UPDATE_NOTE,
-        payload: payload
-    }
-}
+
 
 export const getSingleNote = (id) => {
+    // console.log("Calling get Single Note ")
     const payload = {
-        id
+        id  : id
     }
     return {
         type: GET_SINGLE_NOTE,

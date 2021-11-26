@@ -60,38 +60,18 @@ const addReducer = (state = initialState, action) => {
                 notes : newNotes
             }
         
-        case UPDATE_NOTE:
-               const updatedNotes = state.notes.filter((a) => {
-                    console.log(a)
-                    console.log("payload id ", action.payload.id)
-                    return a.id != action.payload.id
-               })
-               const getItem = state.notes.filter((note) => {
-                    return payload.id == note.id
-                })
-            
-            //    console.log(" Updated Lis", newNotes)
-            return {
-                ...state,
-                notes: [getItem, ...state.notes]
-            }
+       
         
         case GET_SINGLE_NOTE:
-            const getSingleNote = state.notes.filter((note) => {
-                return payload.id == note.id
+                      const getSingleNote = state.notes.filter((note) => {
+                return action.payload.id == note.id
             })
-            console.log("Single Note", getSingleNote)
             return {
                 ...state,
                 singleNote: getSingleNote
             }
         
-        case "CALL_REDUCER":          
-            console.log("Calling Call reducer from call reducer")
-            return {
-                ...state,
-            }
-   
+       
         
         default:
           return state

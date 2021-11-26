@@ -9,12 +9,12 @@ const SingleNote = ({ title, onPressDelete, description, id, navigation, time })
 
     }
     return (
-        // <TouchableOpacity
-        //     style={styles.container}
-        //     onPress={() => {
-        //         navigation.navigate('UpdateNote', { id : id})
-        //     }}
-        // >
+        <TouchableOpacity
+            // style={styles.container}
+            onPress={() => {
+                navigation.navigate('UpdateNote', { id : id})
+            }}
+        >
         <View
             style={styles.container}
         >
@@ -49,7 +49,7 @@ const SingleNote = ({ title, onPressDelete, description, id, navigation, time })
             </View>
                 
         </View>
-        // </TouchableOpacity>
+        </TouchableOpacity>
     )
 }
 
@@ -62,19 +62,20 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         paddingHorizontal: 10,
         marginVertical: 10,
+        // backgroundColor: '#ffd791',
         backgroundColor: 'white',
         elevation: 4
     },
     title: {
         fontWeight: '500',
         fontSize: 20,
-        color: 'black'
+        color: '#474747'
     },
     description: {
         fontSize: 15,
         paddingHorizontal: 20,
         paddingVertical: 5,
-        color: '#404f66',
+        color: '#8c8b8b',
         fontWeight: '500'
     },
     button: {
@@ -92,7 +93,8 @@ const styles = StyleSheet.create({
     deleteImage: {
         width: 30,
         height: 30,
-        tintColor: 'black'
+        tintColor: 'black',
+        tintColor: '#db464b'
     },
     timeAndDateContainer: {
         width: '100%',

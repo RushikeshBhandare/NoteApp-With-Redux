@@ -43,7 +43,7 @@ class AddNote extends PureComponent {
                     <View style={styles.descriptionContainer}>
                         <TextInput
                             value={this.state.description}
-                            placeholder="Add title"
+                            placeholder="Add description"
                             style={styles.descriptionInput}
                             multiline={true}
                             onChangeText={(e) => { this.setState({description: e})}}

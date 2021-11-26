@@ -3,7 +3,9 @@ import { View, Text, TextInput, StyleSheet } from "react-native";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getSingleNote } from "../redux/actions";
-import { updateNote } from "../redux/actions";
+import { addNote } from "../redux/actions";
+import { deleteNote } from "../redux/actions";
+
 import AppButton from "../comonents/AppButton";
 import AppHeader from "../comonents/Header";
 
@@ -15,7 +17,8 @@ class UpdateNote extends PureComponent {
         super(props)
         this.state = {
             title: '',
-            description: ''
+            description: '',
+            isUpdate: false
         }
         
     }
@@ -26,27 +29,40 @@ class UpdateNote extends PureComponent {
         //     title: '',
         //     description: ''
         // })
-        // console.log("data from Update Component ", this.props.navigation.state.params.id)
+        console.log("data from Update Component ", this.props.navigation.state.params.id)
         this.props.getSingleNote(this.props.navigation.state.params.id)
+        // console.log("From Update single note data ", this.props.singleNote[0].id)
 
-        console.log("Get Single file ", this.props.singleNote[0])
-            this.setState({
-                title: this.props.singleNote[0].note.title,
-                description: this.props.singleNote[0].note.description
-            })
+      
+
+        // console.log("Get Single file ", this.props.singleNote[0])
+        //     this.setState({
+        //         title: this.props.singleNote[0].note.title,
+        //         description: this.props.singleNote[0].note.description
+        //     })
     }
 
+    componentDidUpdate = () => {
+        if (this.state.isUpdate) {
+            return
+        } else (
+            this.setState({
+                title: this.props.singleNote[0].note.title,
+                description: this.props.singleNote[0].note.description,
+                isUpdate: true
+            })
+        )
+    }
   
 
     onPressUpdate = () => {
-        this.props.updateNote({
-            id: this.props.navigation.state.params.id,
-            note: {
+        this.props.addNote({
                 title: this.state.title,
                 description: this.state.description
-            }
-
         })
+        
+        this.props.deleteNote(this.props.navigation.state.params.id)
+      
         this.props.navigation.goBack()
     }
 
@@ -141,7 +157,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => (
     bindActionCreators({
         getSingleNote,
-        updateNote
+        addNote,
+        deleteNote
     }, dispatch)
 )
 
