@@ -71,7 +71,7 @@ class ViewNote extends PureComponent {
     render() {     
         return (
             <View style={styles.constiner}>
-                <AppHeader lable={'Note app'}/>
+                <AppHeader lable={'Note'}/>
                 <View style={styles.titleContainer}>
                     {
                         this.props.notes.length === 0 ? (
@@ -105,11 +105,22 @@ class ViewNote extends PureComponent {
                     }
                     
                     <View style={styles.buttonContainer}>
-                        <AppButton
-                            textStyle={{ color: 'black', fontWeight: 'bold', fontSize: 16 }}
-                            containerStyle={{backgroundColor: '#f5b042'}}
-                            lable='New note'
-                            onPress={this.onPressAddNote} />
+                        {
+                            this.props.notes.length <= 0 ?
+                                <AppButton
+                                    textStyle={{ color: 'white', fontWeight: 'bold', fontSize: 16 }}
+                                    containerStyle={{backgroundColor: '#f5b042'}}
+                                    lable='New note'
+                                    onPress={this.onPressAddNote}        
+                                /> :
+                                <AppButton
+                                    textStyle={{ color: 'white',  fontSize: 24 }}
+                                    containerStyle={{backgroundColor: '#f5b042', width: 50}}
+                                    lable='+'
+                                    onPress={this.onPressAddNote}        
+                                />
+                        }
+                        
                     </View>
                 </View>
             </View>
@@ -142,7 +153,10 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: 10,
         right: 10,
-        width: 100
+        width: 100,
+        // borderWidth: 1,
+        flexDirection: 'column',
+        alignItems: 'flex-end'
     }
 })
 
